@@ -14,6 +14,7 @@ pub fn build(b: *std.build.Builder) void {
     obj.setLibCFile(std.build.FileSource{ .path = "libc.txt" });
     obj.addIncludeDir(devkitpro ++ "/libogc/include");
     obj.addIncludeDir(devkitpro ++ "/portlibs/gamecube/include");
+    obj.addIncludeDir(devkitpro ++ "/portlibs/ppc/include");
     obj.setTarget(.{
         .cpu_arch = .powerpc,
         .os_tag = .freestanding,
@@ -36,6 +37,7 @@ pub fn build(b: *std.build.Builder) void {
         "zig-out/zig-gamecube.o",
         "-L" ++ devkitpro ++ "/libogc/lib/cube",
         "-L" ++ devkitpro ++ "/portlibs/gamecube/lib",
+        "-L" ++ devkitpro ++ "/portlibs/ppc/lib",
     } ++ flags ++ .{
         "-o",
         "zig-out/zig-gamecube.elf",
